@@ -15,7 +15,8 @@ final class PrintingServiceProvider extends PackageServiceProvider
     {
         $package
             ->name('laravel-printing')
-            ->hasConfigFile();
+            ->hasConfigFile()
+            ->hasViews();
     }
 
     public function packageRegistered(): void

@@ -73,6 +73,27 @@ class Factory
         return new Drivers\PrintNode\PrintNode($config['key'] ?? null);
     }
 
+    protected function createNetworkDriver(#[SensitiveParameter] array $config): Driver
+    {
+        PrintDriver::Network->ensureConfigIsValid($config);
+
+        return new Drivers\Network\Network($config);
+    }
+
+    protected function createUsbDriver(#[SensitiveParameter] array $config): Driver
+    {
+        PrintDriver::Usb->ensureConfigIsValid($config);
+
+        return new Drivers\Usb\Usb($config);
+    }
+
+    protected function createRawDriver(#[SensitiveParameter] array $config): Driver
+    {
+        PrintDriver::Raw->ensureConfigIsValid($config);
+
+        return new Drivers\Raw\Raw($config);
+    }
+
     protected function get(string $driver): Driver
     {
         return $this->drivers[$driver] ?? $this->resolve($driver);

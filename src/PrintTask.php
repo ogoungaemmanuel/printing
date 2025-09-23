@@ -89,6 +89,21 @@ abstract class PrintTask implements PrintTaskContract
         return $this;
     }
 
+    public function view(string $view, array $data = []): static
+    {
+        return $this->loadview($view, $data);
+    }
+
+    public function blade(string $view, array $data = []): static
+    {
+        return $this->loadview($view, $data);
+    }
+
+    public function template(string $view, array $data = []): static
+    {
+        return $this->loadview($view, $data);
+    }
+
     public function markdown(string $markdownContent): static
     {
         $this->content = $markdownContent;

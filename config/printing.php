@@ -36,6 +36,37 @@ return [
             'secure' => env('CUPS_SERVER_SECURE'),
         ],
 
+        PrintDriver::Network->value => [
+            'ip' => env('NETWORK_PRINTER_IP'),
+            'port' => (int) env('NETWORK_PRINTER_PORT', 9100), // Default raw printing port
+            'timeout' => (int) env('NETWORK_PRINTER_TIMEOUT', 30),
+            'protocol' => env('NETWORK_PRINTER_PROTOCOL', 'raw'), // raw, lpr, ipp
+        ],
+
+        PrintDriver::Usb->value => [
+            'device' => env('USB_PRINTER_DEVICE'), // e.g., /dev/usb/lp0 or auto-detect
+            'vendor_id' => env('USB_PRINTER_VENDOR_ID'), // USB Vendor ID (hex)
+            'product_id' => env('USB_PRINTER_PRODUCT_ID'), // USB Product ID (hex)
+            'timeout' => (int) env('USB_PRINTER_TIMEOUT', 30),
+            'auto_detect' => env('USB_PRINTER_AUTO_DETECT', true),
+        ],
+
+        PrintDriver::Raw->value => [
+            'connection_type' => env('RAW_PRINTER_CONNECTION', 'network'), // network, usb, parallel, serial
+            'ip' => env('RAW_PRINTER_IP'),
+            'port' => (int) env('RAW_PRINTER_PORT', 9100),
+            'device' => env('RAW_PRINTER_DEVICE'),
+            'vendor_id' => env('RAW_PRINTER_VENDOR_ID'),
+            'product_id' => env('RAW_PRINTER_PRODUCT_ID'),
+            'serial_port' => env('RAW_PRINTER_SERIAL_PORT'), // e.g., COM1 or /dev/ttyUSB0
+            'parallel_port' => env('RAW_PRINTER_PARALLEL_PORT'), // e.g., LPT1 or /dev/lp0
+            'baud_rate' => (int) env('RAW_PRINTER_BAUD_RATE', 9600),
+            'data_bits' => (int) env('RAW_PRINTER_DATA_BITS', 8),
+            'stop_bits' => (int) env('RAW_PRINTER_STOP_BITS', 1),
+            'parity' => env('RAW_PRINTER_PARITY', 'none'), // none, even, odd
+            'timeout' => (int) env('RAW_PRINTER_TIMEOUT', 30),
+        ],
+
         /*
          * Add your custom drivers here:
          *

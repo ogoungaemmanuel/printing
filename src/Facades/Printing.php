@@ -13,6 +13,8 @@ use Xslain\Printing\Enums\PrintDriver;
  * @method static null|string|mixed defaultPrinterId()
  * @method static \Xslain\Printing\Contracts\Printer|null defaultPrinter()
  * @method static \Xslain\Printing\Contracts\PrintTask newPrintTask()
+ * @method static \Xslain\Printing\Contracts\PrintTask view(string $view, array $data = [])
+ * @method static \Xslain\Printing\Contracts\PrintJob|null printView(string $view, array $data = [], $printerId = null)
  * @method static \Xslain\Printing\Contracts\Printer|null printer($printerId = null, ...$args)
  * @method static \Illuminate\Support\Collection printers(int|null $limit = null, int|null $offset = null, string|null $dir = null, ...$args)
  * @method static \Illuminate\Support\Collection printJobs(int|null $limit = null, int|null $offset = null, string|null $dir = null, ...$args)

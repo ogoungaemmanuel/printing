@@ -71,6 +71,22 @@ class Printing implements Driver
         );
     }
 
+    public function view(string $view, array $data = []): Contracts\PrintTask
+    {
+        return $this->newPrintTask()->loadview($view, $data);
+    }
+
+    public function printView(string $view, array $data = [], $printerId = null): ?Contracts\PrintJob
+    {
+        $task = $this->newPrintTask()->loadview($view, $data);
+        
+        if ($printerId) {
+            $task->printer($printerId);
+        }
+        
+        return $task->send();
+    }
+
     public function printer($printerId = null, ...$args): ?Printer
     {
         return $this->executeDriverCall(
